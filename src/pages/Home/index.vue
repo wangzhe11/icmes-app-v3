@@ -41,27 +41,6 @@
             </div>
             <p class="title mt-2">我的审批</p>
           </li>
-          <li class="pt-64 justify-center flex flex-col items-center">
-            <div class="position-relative">
-              <img class="w-35 h-35" src="./images/icon-approve.png" alt="" />
-              <var-badge class="icon-badge" type="danger" :value="188" :max-value="99" />
-            </div>
-            <p class="title mt-2">我的审批</p>
-          </li>
-          <li class="pt-64 justify-center flex flex-col items-center">
-            <div class="position-relative">
-              <img class="w-35 h-35" src="./images/icon-approve.png" alt="" />
-              <var-badge class="icon-badge" type="danger" :value="188" :max-value="99" />
-            </div>
-            <p class="title mt-2">我的审批</p>
-          </li>
-          <li class="pt-64 justify-center flex flex-col items-center">
-            <div class="position-relative">
-              <img class="w-35 h-35" src="./images/icon-approve.png" alt="" />
-              <var-badge class="icon-badge" type="danger" :value="188" :max-value="99" />
-            </div>
-            <p class="title mt-2">我的审批</p>
-          </li>
         </ul>
         <div class="feature-menu mt-10 py-16">
           <strong class="block text-left px-20">功能服务</strong>
