@@ -1,0 +1,23 @@
+.time_highlight {
+  color: $--theme-color-main;
+  margin-right: 0.06rem;
+  font-weight: bold;
+}
+.mint-header {
+  background-color: $--theme-color-main;
+}
+
+.mint-toast {
+  z-index: 2016;
+}
+
+.clearfix {
+  &:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+  }
+}

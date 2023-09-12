@@ -1,0 +1,218 @@
+@mixin bg-image($name) {
+  background-repeat: no-repeat;
+  background-image: url($name + '@2x.png');
+  @media (-webkit-min-device-pixel-ratio: 3), (min-device-pixel-ratio: 3) {
+    background-image: url($name + '@3x.png');
+  }
+}
+
+@mixin border-bottom-1px($color) {
+  position: relative;
+  &:after {
+    display: block;
+    position: absolute;
+    z-index: 9;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    border-top: 1px solid $color;
+    content: ' ';
+    transform: scaleY(0.5);
+  }
+}
+
+@mixin border-top-1px($color) {
+  position: relative;
+  &:after {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    border-top: 1px solid $color;
+    content: ' ';
+    transform: scaleY(0.5);
+  }
+}
+
+@mixin border-top-bottom-1px($color) {
+  position: relative;
+  &:after {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 200%;
+    border-top: 1px solid $color;
+    border-bottom: 1px solid $color;
+    content: ' ';
+    transform: scaleY(0.5);
+    transform-origin: 0 0;
+  }
+}
+@mixin border-right-left-1px($color) {
+  position: relative;
+  &:after {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 200%;
+    height: 100%;
+    border-right: 1px solid $color;
+    border-left: 1px solid $color;
+    content: ' ';
+    transform: scaleX(0.5);
+    transform-origin: 0 0;
+  }
+}
+
+@mixin border-right-1px($color) {
+  position: relative;
+  &:before {
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 0;
+    height: 100%;
+    border-right: 1px solid $color;
+    content: ' ';
+    transform: scaleX(0.5);
+  }
+}
+
+@mixin border-left-1px($color) {
+  position: relative;
+  &:before {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 0;
+    height: 100%;
+    border-right: 1px solid $color;
+    content: ' ';
+    transform: scaleX(0.5);
+  }
+}
+
+@mixin border-1px($color) {
+  position: relative;
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: 1px solid $color;
+    box-sizing: border-box;
+    width: 200%;
+    height: 200%;
+    transform: scale(0.5);
+    transform-origin: left top;
+  }
+}
+
+@mixin border-1px-radius($color, $radius: 50%) {
+  position: relative;
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: 1px solid $color;
+    box-sizing: border-box;
+    border-radius: $radius * 2;
+    width: 200%;
+    height: 200%;
+    transform: scale(0.5);
+    transform-origin: left top;
+  }
+}
+
+@mixin btn-linear-gradient-v($color1, $color2) {
+  background-image: linear-gradient(-180deg, $color1 0%, $color2 100%);
+  box-shadow: 0 2px 4px 0 rgba(238, 198, 0, 0.3);
+  border-radius: 10000px;
+}
+
+// 单行文本超出显示省略号
+@mixin no-wrap() {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+// 多行文本超出显示省略号
+@mixin no-wrap-multi($n) {
+  letter-spacing: 0;
+      overflow: hidden;
+      display: -webkit-box;
+      text-overflow: ellipsis;
+      -webkit-line-clamp: $n;  /*要显示的行数*/
+      -webkit-box-orient: vertical;
+}
+
+// 扩展点击区域
+%extend-click {
+  position: relative;
+  &:before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+  }
+}
+
+@mixin cube($width: 100%, $height: 100%) {
+  width: $width;
+  height: $height;
+}
+
+@mixin square($size: 100%) {
+  width: $size;
+  height: $size;
+}
+
+/**
+  * 圆角宏
+  * 只传入一个参数，生成正圆(circle)
+  * 传入两个参数，生成固定圆角大小的正方形(circle)
+  * 传入三个参数，生成固定圆角大小的长方形(circle)
+  * @param $width 圆角盒模型宽
+  * @param $height 圆角盒模型高
+  * @param $radius 圆角大小
+  */
+@mixin radiusCube($options) {
+  @if length($options) == 1 {
+    @include square($options);
+    border-radius: 50%;
+  }
+  @if length($options) == 2 {
+    @include square(nth($options, 1));
+    border-radius: nth($options, 2);
+  }
+  @if length($options) == 3 {
+    @include cube(nth($options, 1), nth($options, 2));
+    border-radius: nth($options, 3);
+  }
+}
+
+
+@mixin center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin positionCenter {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+}

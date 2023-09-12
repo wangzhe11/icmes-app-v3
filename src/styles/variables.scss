@@ -1,0 +1,42 @@
+/* theme color */
+$--theme-color-main: #1788ff; // 主題色
+$--theme-color-light: #ccc; // 浅色
+$--theme-color-warning: #ff840e; // WARNING
+$--theme-color-danger: #f5222d; // ERROR
+$--theme-color-success: #5dc800; //SUCCESS
+
+/* font color */
+$--font-color-main: #333; // 通用字体颜色
+$--font-color-dark: #666; // 较深色文字
+$--font-color-light: #999; // 较浅色文字
+$--font-color-placeholder: #ccc; // 占位符浅色
+
+/* border color */
+$--border-color-default: #e9e9ea;
+$--border-color-light: #999; // 较浅色边框
+
+$--global-bg-color: #f3f3f3; // html 全局背景色
+$--power-cut-warning-color: #9734c7; // 停送电信号异常颜色
+
+// 字体大小
+$--font-size-sm: 12px; // 小
+$--font-size-md: 14px; // 中
+$--font-size-lg: 16px; // 大
+$--font-size-m-lg: 18px; // 更大
+$--font-size-x-lg: 20px; // 超大
+
+:export {
+  themeColor: $--theme-color-main;
+  themeColorLight: $--theme-color-light;
+  themeColorWarning: $--theme-color-warning;
+  themeColorError: $--theme-color-danger;
+  themeColorSuccess: $--theme-color-success;
+  fontColorDark: $--font-color-dark;
+  fontColorLight: $--font-color-light;
+  fontColor: $--font-color-main;
+  fontSizeSM: $--font-size-sm;
+  fontSizeMD: $--font-size-md;
+  fontSizeLG: $--font-size-lg;
+  fontSizeMLG: $--font-size-m-lg;
+  fontSizeXLG: $--font-size-x-lg;
+}
