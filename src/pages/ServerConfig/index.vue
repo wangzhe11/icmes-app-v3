@@ -82,6 +82,7 @@
         setConfig(
           Object.assign(data, {
             serverUrl: `http://${formData.address}:${server_port}`,
+            socketUrl: `http://${formData.address}:${server_port}`,
           }),
         );
         router.replace({

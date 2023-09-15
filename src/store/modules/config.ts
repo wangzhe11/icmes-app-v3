@@ -9,6 +9,7 @@ interface Config {
   websocket_port?: number | null;
   accountCodeExpireTime?: number | null;
   serverUrl?: string;
+  socketUrl?: string;
 }
 
 interface ConfigState {
