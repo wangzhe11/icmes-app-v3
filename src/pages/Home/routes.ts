@@ -19,22 +19,22 @@ interface Routes {
 
 export const mineActivityRoutes: Routes = {
   '91001.': {
-    name: 'myApprove',
+    name: 'MyApprove',
     title: '我的审批',
     icon: requireImg('./images/icon-approve.png'),
   },
   '91002.': {
-    name: 'myTask',
+    name: 'MyTask',
     title: '我的任务',
     icon: requireImg('./images/icon-task.png'),
   },
   '91003.': {
-    name: 'carbonCopyMyself',
+    name: 'CarbonCopyMyself',
     title: '抄送我的',
     icon: requireImg('./images/icon-copy.png'),
   },
   '92019.': {
-    name: 'safeProductionPlatform',
+    name: 'SafeProductionPlatform',
     title: '安全生产处置',
     icon: requireImg('./images/icon-call-police.png'),
   },
@@ -73,22 +73,22 @@ export const otherRoutes: Routes = {
     icon: requireImg('./images/icon-equipment-file.png'),
   },
   '92015.': {
-    name: 'createPowerCutList',
+    name: 'CreatePowerCutList',
     title: '新建停送电',
     icon: requireImg('./images/icon-new-power-cut.png'),
   },
   '92001.': {
-    name: 'powerFailure',
+    name: 'PowerFailure',
     title: '停送电申请单',
     icon: requireImg('./images/icon-power-failure.png'),
   },
   '92002.': {
-    name: 'configPowerOperation',
+    name: 'ConfigPowerOperation',
     title: '配电操作',
     icon: requireImg('./images/icon-zlw-power-task.png'),
   },
   '92009.': {
-    name: 'arrangeWorksList',
+    name: 'ArrangeWorksList',
     title: '排班管理',
     icon: requireImg('./images/icon-arrange-works-list.png'),
   },
@@ -104,7 +104,7 @@ export const otherRoutes: Routes = {
   },
 
   '29200.': {
-    name: 'commercialCoalList',
+    name: 'CommercialCoalList',
     title: '商品煤检测',
     icon: requireImg('./images/icon-commercial-coal.png'),
   },
@@ -119,7 +119,7 @@ export const otherRoutes: Routes = {
     icon: requireImg('./images/icon-maintenance.png'),
   },
   '92012.': {
-    name: 'maintenanceSchedule',
+    name: '<aintenanceSchedule',
     title: '检修计划',
     icon: requireImg('./images/icon-maintenance-schedule.png'),
   },
@@ -134,22 +134,17 @@ export const otherRoutes: Routes = {
   //   icon: requireImg('./images/icon-analysis-yield.png')
   // },
   '92017.': {
-    name: 'analysisAsh',
+    name: 'AnalysisAsh',
     title: '灰分预警分析',
     icon: requireImg('./images/icon-analysis-ash.png'),
   },
-  '92019.': {
-    name: 'SafeProductionPlatform',
-    title: '安全生产处置',
-    icon: requireImg('./images/icon-safe-prodction.png'),
-  },
   '92018.': {
-    name: 'analysisQuantity',
+    name: 'AnalysisQuantity',
     title: '平均带煤量预警分析',
     icon: requireImg('./images/icon-analysis-quantity.png'),
   },
   '25050.': {
-    name: 'coalSlurryPool',
+    name: 'CoalSlurryPool',
     title: '煤泥水池数据',
     icon: requireImg('./images/icon-coal-slurry-pool.png'),
   },

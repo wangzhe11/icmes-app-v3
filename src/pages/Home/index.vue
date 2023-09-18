@@ -38,24 +38,25 @@
             class="pt-64 justify-center flex flex-col items-center"
             v-for="(item, key) in mainMenus"
             :key="key"
+            @click="toDetail(item)"
           >
             <div class="position-relative">
               <img class="h-35" :src="item.icon" alt="" />
               <var-badge
                 v-if="
-                  (item.name === 'myApprove' && approvalNum > 0) ||
-                  (item.name === 'myTask' && taskNum > 0) ||
-                  (item.name === 'carbonCopyMyself' && carbonNum > 0) ||
-                  (item.name === 'safeProductionPlatform' && alarmNum > 0)
+                  (item.name === 'MyApprove' && approvalNum > 0) ||
+                  (item.name === 'MyTask' && taskNum > 0) ||
+                  (item.name === 'CarbonCopyMyself' && carbonNum > 0) ||
+                  (item.name === 'SafeProductionPlatform' && alarmNum > 0)
                 "
                 class="icon-badge"
                 type="danger"
                 :value="
-                  item.name === 'myApprove'
+                  item.name === 'MyApprove'
                     ? approvalNum
-                    : item.name === 'myTask'
+                    : item.name === 'MyTask'
                     ? taskNum
-                    : item.name === 'carbonCopyMyself'
+                    : item.name === 'CarbonCopyMyself'
                     ? carbonNum
                     : alarmNum
                 "
@@ -68,7 +69,12 @@
         <div class="feature-menu mt-10 pt-16">
           <strong class="block text-left px-20">功能服务</strong>
           <ul class="mt-12 w-full flex flex-wrap items-center">
-            <li class="mb-16" v-for="(item, key) in featureMenus" :key="key">
+            <li
+              class="mb-16"
+              v-for="(item, key) in featureMenus"
+              :key="key"
+              @click="toDetail(item)"
+            >
               <div class="position-relative">
                 <img class="w-24 h-24" :src="item.icon" alt="" />
               </div>
@@ -94,6 +100,7 @@
   import { getUnreadNotificationNumApi } from '/@/api/notice';
   import { getAlarmsNotStartNumApi } from '/@/api/issue/alarms';
   import { useNotification } from '/@/hooks/useCordova';
+  import { useRouter } from 'vue-router';
 
   const loading = ref(true);
   const approvalNum = ref(0);
@@ -118,6 +125,7 @@
   >([]);
 
   const { userInfo, getMenus: menus } = useUserStore();
+  const router = useRouter();
 
   document.addEventListener('deviceready', useNotification, false);
 
@@ -174,6 +182,12 @@
     } catch (error) {
       loading.value = false;
     }
+  }
+
+  function toDetail(item: { name: string }) {
+    router.push({
+      name: item.name,
+    });
   }
 </script>
 

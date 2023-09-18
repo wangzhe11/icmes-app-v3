@@ -1,22 +1,24 @@
 <template>
   <div class="app-header">
-    <var-app-bar :title="title" :color="bgColor">
-      <template #left>
-        <var-button :text-color="btnBackColor" round text>
-          <var-icon name="chevron-left" :size="40" />
-        </var-button>
-      </template>
+    <var-sticky>
+      <var-app-bar :title="title" :color="bgColor" :title-position="titlePosition">
+        <template #left>
+          <var-button :text-color="btnBackColor" round text @click="back">
+            <var-icon name="chevron-left" :size="30" />
+          </var-button>
+        </template>
 
-      <template #right>
-        <var-space class="app-header-right" :size="[0, '1.4vmin']">
-          <slot name="right"></slot>
-        </var-space>
-      </template>
+        <template #right>
+          <var-space class="app-header-right" :size="[0, '1.4vmin']">
+            <slot name="right"></slot>
+          </var-space>
+        </template>
 
-      <template #content>
-        <slot name="content"></slot>
-      </template>
-    </var-app-bar>
+        <template #content>
+          <slot name="content"></slot>
+        </template>
+      </var-app-bar>
+    </var-sticky>
   </div>
 </template>
 
@@ -42,5 +44,21 @@
       type: String as PropType<ButtonProps['textColor']>,
       default: '#fff',
     },
+    titlePosition: {
+      type: String as PropType<AppBarProps['titlePosition']>,
+      default: 'center',
+    },
   });
+
+  const emit = defineEmits(['back']);
+
+  const back = () => {
+    emit('back');
+  };
 </script>
+
+<style lang="scss" scoped>
+  .app-header :deep .var-app-bar__toolbar {
+    height: 40px;
+  }
+</style>

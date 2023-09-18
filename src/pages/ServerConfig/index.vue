@@ -1,15 +1,6 @@
 <template>
   <div class="server-config">
-    <app-header :title="''" :bg-color="'transparent'" :btn-back-color="'#333'" class="header">
-      <template #left>
-        <app-side-menu />
-      </template>
-      <template #right>
-        <app-locale-switch />
-        <app-theme-switch />
-      </template>
-      <template #content> </template>
-    </app-header>
+    <app-header :title="''" :bg-color="'transparent'" :btn-back-color="'#333'" class="header" />
     <div class="px-25">
       <h2 class="mt-60">设置服务器地址</h2>
       <var-form ref="form" class="mt-40">

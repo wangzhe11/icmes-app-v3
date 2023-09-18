@@ -7,23 +7,25 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
-    AppHeader: typeof import('./components/AppHeader.vue')['default']
-    HelloWorld: typeof import('./components/HelloWorld.vue')['default']
-    Indicator: typeof import('./components/Indicator/index.vue')['default']
-    RouterLink: typeof import('vue-router')['RouterLink']
-    RouterView: typeof import('vue-router')['RouterView']
-    VarAppBar: typeof import('@varlet/ui')['_AppBarComponent']
-    VarAvatar: typeof import('@varlet/ui')['_AvatarComponent']
-    VarBadge: typeof import('@varlet/ui')['_BadgeComponent']
-    VarButton: typeof import('@varlet/ui')['_ButtonComponent']
-    VarCell: typeof import('@varlet/ui')['_CellComponent']
-    VarCol: typeof import('@varlet/ui')['_ColComponent']
-    VarForm: typeof import('@varlet/ui')['_FormComponent']
-    VarIcon: typeof import('@varlet/ui')['_IconComponent']
-    VarInput: typeof import('@varlet/ui')['_InputComponent']
-    VarRow: typeof import('@varlet/ui')['_RowComponent']
-    VarSkeleton: typeof import('@varlet/ui')['_SkeletonComponent']
-    VarSnackbar: typeof import('@varlet/ui')['_SnackbarComponent']
-    VarSpace: typeof import('@varlet/ui')['_SpaceComponent']
+    AppHeader: typeof import('./components/AppHeader.vue')['default'];
+    BasicList: typeof import('./components/BasicList.vue')['default'];
+    HelloWorld: typeof import('./components/HelloWorld.vue')['default'];
+    Indicator: typeof import('./components/Indicator/index.vue')['default'];
+    RouterLink: typeof import('vue-router')['RouterLink'];
+    RouterView: typeof import('vue-router')['RouterView'];
+    VarAppBar: typeof import('@varlet/ui')['_AppBarComponent'];
+    VarAvatar: typeof import('@varlet/ui')['_AvatarComponent'];
+    VarBadge: typeof import('@varlet/ui')['_BadgeComponent'];
+    VarButton: typeof import('@varlet/ui')['_ButtonComponent'];
+    VarCell: typeof import('@varlet/ui')['_CellComponent'];
+    VarForm: typeof import('@varlet/ui')['_FormComponent'];
+    VarIcon: typeof import('@varlet/ui')['_IconComponent'];
+    VarInput: typeof import('@varlet/ui')['_InputComponent'];
+    VarList: typeof import('@varlet/ui')['_ListComponent'];
+    VarProgress: typeof import('@varlet/ui')['_ProgressComponent'];
+    VarPullRefresh: typeof import('@varlet/ui')['_PullRefreshComponent'];
+    VarSkeleton: typeof import('@varlet/ui')['_SkeletonComponent'];
+    VarSpace: typeof import('@varlet/ui')['_SpaceComponent'];
+    VarSticky: typeof import('@varlet/ui')['_StickyComponent'];
   }
 }
