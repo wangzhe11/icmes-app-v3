@@ -1,7 +1,7 @@
 <template>
   <div class="production-plan">
-    <app-header :title="'生产计划'" />
-    <basic-list :getListApi="getProductionPlanList" :pageModel="pageModel" @setList="getList">
+    <app-header :title="'生产计划'" @back="back" />
+    <basic-list :getListApi="getProductionPlanList" :pageModel="pageModel">
       <template #default>
         <ul class="list">
           <li class="px-12 pt-15 mt-10">
@@ -41,7 +41,6 @@
 </script>
 
 <script lang="ts" setup>
-  import { ref } from 'vue';
   import { getProductionPlanListApi } from '/@/api/production/plan';
   import { ProductionPlanListParams } from '/@/api/production/model/planModel';
   import { PageModel } from '/#/page-model';
@@ -55,20 +54,12 @@
   });
   const pageModel = reactive<PageModel>({
     pageNo: 1,
-    pageSize: 7,
-    totalCount: 0,
     totalPages: 0,
   });
-  const list = ref([]);
+  const router = useRouter();
 
-  const getList = (value: any) => {
-    console.log('value :>> ', value);
-    value = [
-      {
-        aaa: '111',
-      },
-    ];
-    list.value = value;
+  const back = () => {
+    router.back();
   };
 
   const getProductionPlanList = async (pageSize: number, pageNo: number) => {

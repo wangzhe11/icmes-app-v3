@@ -2,7 +2,7 @@
   <div class="server-config">
     <app-header :title="''" :bg-color="'transparent'" :btn-back-color="'#333'" class="header" />
     <div class="px-25">
-      <h2 class="mt-60">设置服务器地址</h2>
+      <h2 class="mt-60 text-left">设置服务器地址</h2>
       <var-form ref="form" class="mt-40">
         <var-cell>
           地址
@@ -89,6 +89,8 @@
 
 <style lang="scss" scoped>
   .server-config {
+    background: #fff;
+    height: 100%;
     .header :deep .var-app-bar {
       box-shadow: none;
     }

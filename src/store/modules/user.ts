@@ -53,6 +53,9 @@ export const useUserStore = defineStore('app-user', {
     getMenus(): Menu {
       return this.remoteConfig.menus as Menu;
     },
+    getDict(): Dict {
+      return this.remoteConfig.dicts as Dict;
+    },
     getUserInfo(): LoginResultModel {
       return this.userInfo as LoginResultModel;
     },

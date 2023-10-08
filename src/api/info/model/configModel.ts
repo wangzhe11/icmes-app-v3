@@ -12,12 +12,12 @@ export interface RemoteConfigResultModel {
 export interface Dict {
   [index: string]: {
     /** 数据字典中的选项是否被禁用 */
-    disabled: boolean;
+    disabled?: boolean;
     /** 数据字典中的选项中文名 */
-    name: string;
-    options: Dict | null;
+    name?: string;
+    options?: Dict | null;
     /** 数据字典中的选项排序字段，越小越靠前 */
-    order: number;
+    order?: number;
   };
 }
 

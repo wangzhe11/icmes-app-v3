@@ -9,6 +9,7 @@ declare module 'vue' {
   export interface GlobalComponents {
     AppHeader: typeof import('./components/AppHeader.vue')['default'];
     BasicList: typeof import('./components/BasicList.vue')['default'];
+    ChooseDepartment: typeof import('./components/ChooseDepartment/index.vue')['default'];
     HelloWorld: typeof import('./components/HelloWorld.vue')['default'];
     Indicator: typeof import('./components/Indicator/index.vue')['default'];
     RouterLink: typeof import('vue-router')['RouterLink'];
@@ -16,12 +17,17 @@ declare module 'vue' {
     VarAppBar: typeof import('@varlet/ui')['_AppBarComponent'];
     VarAvatar: typeof import('@varlet/ui')['_AvatarComponent'];
     VarBadge: typeof import('@varlet/ui')['_BadgeComponent'];
+    VarBreadcrumb: typeof import('@varlet/ui')['_BreadcrumbComponent'];
+    VarBreadcrumbs: typeof import('@varlet/ui')['_BreadcrumbsComponent'];
     VarButton: typeof import('@varlet/ui')['_ButtonComponent'];
     VarCell: typeof import('@varlet/ui')['_CellComponent'];
     VarForm: typeof import('@varlet/ui')['_FormComponent'];
     VarIcon: typeof import('@varlet/ui')['_IconComponent'];
     VarInput: typeof import('@varlet/ui')['_InputComponent'];
     VarList: typeof import('@varlet/ui')['_ListComponent'];
+    VarMenu: typeof import('@varlet/ui')['_MenuComponent'];
+    VarOverlay: typeof import('@varlet/ui')['_OverlayComponent'];
+    VarPopup: typeof import('@varlet/ui')['_PopupComponent'];
     VarProgress: typeof import('@varlet/ui')['_ProgressComponent'];
     VarPullRefresh: typeof import('@varlet/ui')['_PullRefreshComponent'];
     VarSkeleton: typeof import('@varlet/ui')['_SkeletonComponent'];

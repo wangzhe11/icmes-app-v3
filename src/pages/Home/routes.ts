@@ -109,7 +109,7 @@ export const otherRoutes: Routes = {
     icon: requireImg('./images/icon-commercial-coal.png'),
   },
   '92006.': {
-    name: 'RepairForm',
+    name: 'RepairOrder',
     title: '现场问题上报',
     icon: requireImg('./images/icon-repair-form.png'),
   },

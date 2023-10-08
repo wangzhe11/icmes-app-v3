@@ -55,7 +55,6 @@
   const router = useRouter();
 
   const back = () => {
-    console.log('router :>> ', router);
     router.back();
   };
 

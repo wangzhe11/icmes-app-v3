@@ -79,9 +79,9 @@
   const getList = () => {
     props.getListApi(newPageModel.pageNo).then((result: any) => {
       console.log('result :>> ', result);
-      let tempList: [] = result.data.list;
-      newPageModel.pageNo = result.data.pageNo;
-      newPageModel.totalPages = result.data.totalPages;
+      let tempList: [] = result.list;
+      newPageModel.pageNo = result.pageNo;
+      newPageModel.totalPages = result.totalPages;
       refreshing.value = false;
       loading.value = false;
       if (newPageModel.pageNo === 1) {

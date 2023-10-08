@@ -30,7 +30,12 @@ export default defineConfig({
     vue(),
     UnoCSS(),
     Components({
+      // 要搜索组件的目录的相对路径
       dirs: ['src/components'],
+      // 组件的有效文件扩展名
+      extensions: ['vue'],
+      // 搜索子目录
+      deep: true,
       resolvers: [VarletUIResolver()],
       dts: './src/components.d.ts',
     }),

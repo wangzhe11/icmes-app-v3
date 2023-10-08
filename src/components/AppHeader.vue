@@ -1,6 +1,6 @@
 <template>
   <div class="app-header">
-    <var-sticky>
+    <var-sticky z-index="4000">
       <var-app-bar :title="title" :color="bgColor" :title-position="titlePosition">
         <template #left>
           <var-button :text-color="btnBackColor" round text @click="back">

@@ -12,7 +12,6 @@
 
 <script lang="ts" setup>
   import LoginForm from './components/loginForm.vue';
-  // import SetServerForm from './components/setServerForm.vue';
   import { useConfigStore } from '/@/store/modules/config';
 
   const { getConfig } = useConfigStore();
@@ -34,6 +33,7 @@
 
 <style lang="scss" scoped>
   .login {
-
+    background: #fff;
+    height: 100%;
   }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="login-form px-25">
+  <div class="login-form px-25 h-full">
     <div v-if="JSON.stringify(serverConfig) === '{}'" class="pt-86">
       <img src="../images/logo.png" alt="" width="290" />
       <var-button
@@ -10,14 +10,16 @@
         @click="setConfig"
         >设置服务器</var-button
       >
-      <var-button block text outline class="btn gray-border mt-25 pt-27 pb-27">扫码设置</var-button>
-      <p class="tips">
+      <var-button block text outline class="btn black gray-border mt-25 pt-27 pb-27"
+        >扫码设置</var-button
+      >
+      <p class="tips mt-30 text-left">
         <var-icon name="information-outline" color="#CDCDCD" size="15" class="mr-4" />
         首次登录请先设置服务器地址
       </p>
     </div>
     <div v-else>
-      <h2 class="mt-60">账号密码</h2>
+      <h2 class="pt-60 text-left">账号密码</h2>
       <var-form ref="form" class="mt-40" scroll-to-error="start">
         <var-cell class="mb-20">
           工号
@@ -158,6 +160,9 @@
       padding: 22px 0;
       font-size: $--font-size-m-lg;
       color: #fff;
+    }
+    .black {
+      color: #333;
     }
     .gray-border {
       border: 1px solid $--border-color-light;
