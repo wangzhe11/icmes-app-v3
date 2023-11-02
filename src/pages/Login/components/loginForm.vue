@@ -52,18 +52,16 @@
           </template>
         </var-cell>
         <var-button
+          v-if="isDisabled"
           :disabled="isDisabled"
           block
           type="primary"
-          class="btn mt-25 pt-27 pb-27"
-          :color="
-            isDisabled
-              ? 'linear-gradient(90deg, rgba(23,136,255,0.6), rgba(69,117,255,0.6))'
-              : 'linear-gradient(90deg, #1788FF, #4575FF)'
-          "
+          class="btn h-45 mt-25 pt-27 pb-27"
+          :color="'linear-gradient(90deg, rgba(23,136,255,0.6), rgba(69,117,255,0.6))'"
           @click="handleLogin"
           >登录</var-button
         >
+        <special-button v-else :text="'登录'" @click="handleLogin" />
       </var-form>
     </div>
   </div>

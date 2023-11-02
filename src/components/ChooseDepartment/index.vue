@@ -32,7 +32,17 @@
           :key="item.id"
           @click="chooseDepartment(item)"
         >
-          <var-cell class="cell" :title="item.name">
+          <var-cell class="cell" :class="{ on: item.id === currentDepartmentId }">
+            <template #default>
+              <var-ellipsis style="max-width: 170px">
+                {{ item.name }}
+              </var-ellipsis>
+              <var-icon
+                v-if="item.id === currentDepartmentId"
+                name="check-circle-outline"
+                class="ml-10"
+              />
+            </template>
             <template v-if="item.children.length" #extra>
               <img
                 class="w-16 h-16"

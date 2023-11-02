@@ -1,10 +1,5 @@
 import { BasicFetchListResult } from '../../model/baseModel';
 
-export enum EmergencyLevel {
-  'A' = 'A类',
-  'B' = 'B类',
-}
-
 export interface RepairOrderListParams {
   /** 是否正序 */
   ascending?: boolean;
@@ -16,85 +11,105 @@ export interface RepairOrderListParams {
   orderBy?: string;
   /** 报修单位 */
   organizationId?: number;
+  /** 是否查询已超期数据 */
+  overdue?: boolean;
   /** 当前页码数 */
   pageNo?: number;
   /** 一页多少条记录 0标识不分页全部显示 */
   pageSize?: number;
-  /** 报修处理结果 */
-  processResults?: string[];
   /** 报修结束时间 */
-  reportEndTime?: number;
+  reportEndTime?: number | null;
   /** 报修开始时间 */
-  reportStartTime?: number;
+  reportStartTime?: number | null;
   /** 责任单位ID */
   responsibleOrganizationIds?: number[];
   /** 状态 */
   status: string[] | [];
 }
 
-export type RepairOrderListResultModel = BasicFetchListResult<RepairOrderBaseModel>;
+export interface CurrnetReapirNum {
+  num: number;
+  show: boolean;
+  type: string;
+}
+
+export type RepairOrderListResultModel = BasicFetchListResult<RepairOrderBaseModel> & {
+  assign: boolean;
+  currnetReapirNum: CurrnetReapirNum[];
+};
+
+export interface ProcessTaskModel {
+  businessKey: string;
+  formKey: string;
+  id: string;
+  name: string;
+  parentTaskId: string;
+}
 
 export interface RepairOrderBaseModel {
-  /** 附属设备ID */
-  auxiliaryDeviceId: number;
+  /** 验收备注 */
+  acceptRemark: string;
+  /** 验收时间 */
+  acceptTime: number;
+  /** 验收人 */
+  acceptUserId: number;
+  /** 是否报警转入 */
+  alarmTransfer: boolean;
+  /** 分配备注 */
+  assignComment: string;
+  /** 分配时间 */
+  assignTime: number;
+  /** 分配人id */
+  assignUserId: number;
   /** 报修单号 */
   code: string;
   /** 报修内容 */
   content: string;
   /** 创建时间 */
   createTime: number;
-  /** 创建员工Id */
+  /** 创建员工Id、报修人、报警处理人 */
   createUserId: number;
-  /** 报修单创建人 */
+  /** 报修人姓名 */
   createUserName: string;
-  /** 报修单处理结果 */
-  dispatchComment: string;
-  /** 调度处理时间 */
-  dispatchTime: number;
-  /** 调度处理人 */
-  dispatchUserId: number;
-  /** 调度处理人名称 */
-  dispatchUserName: string;
-  /** 紧急程度 A - A类 B - B类 */
-  emergencyLevel: EmergencyLevel;
+  /** 设备ID */
+  deviceId: number;
+  /** 设备名称 */
+  deviceName: string;
+  /** 紧急程度 */
+  emergencyLevel: string;
   /** 报修单标识符 */
   id: number;
-  /** 检修单code */
-  maintainOrderCode: string;
-  /** 检修单ID */
-  maintainOrderId: number;
-  /** 报修单位ID */
-  organizationId: number;
-  /** 报修单位 */
+  /** 报修部门ID */
+  organization: number;
+  /** 报修部门名称 */
   organizationName: string;
-  /** 主设备类型图标 */
-  primaryDeviceCategoryIcon: string;
-  /** 设备ID */
-  primaryDeviceId: number;
+  /** 预计解决时间 */
+  predictProcessTime: number;
   /** 主设备名称 */
   primaryDeviceName: string;
-  /** 主设备工艺号 */
+  /** 主设备编号 */
   primaryDeviceProcessNo: string;
-  /** 报修单处理意见 */
-  processComment: string;
-  /** 报修单调度处理意见 */
-  processResult: string;
-  /** 报修单处理时间 */
-  processTime: number;
-  /** 报修单处理人 */
-  processUserId: number;
-  /** 报修单处理人名称 */
-  processUserName: string;
+  /** 设备编号 */
+  processNo: string;
+  /** 处理备注 */
+  processRemark: string;
+  /** 处理结果 */
+  processResult: boolean;
+  processTaskModel: ProcessTaskModel;
   /** 报修时间 */
   reportTime: number;
+  /** 责任部门时间 */
+  responsibleOrgTime: number;
+  /** 责任部门用户ID */
+  responsibleOrgUserId: number;
   /** 责任部门ID */
   responsibleOrganization: number;
   /** 责任部门名称 */
   responsibleOrganizationName: string;
-  /** 报修来源 */
-  source: number;
-  /** 报修单状态 字典中BT_REPAIR_ORDER_STATUS 待处理/已关闭/已处理 */
+  /** 报修单状态 字典中BT_REPAIR_ORDER_STATUS */
   status: string;
+  /** 问题分类 */
+  troubleCategory: string;
   /** 更新时间 */
   updateTime: number;
   /** 修改员工Id */

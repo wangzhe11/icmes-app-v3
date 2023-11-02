@@ -1,29 +1,60 @@
 <template>
   <div class="production-plan">
     <app-header :title="'生产计划'" @back="back" />
-    <basic-list :getListApi="getProductionPlanList" :pageModel="pageModel">
+    <basic-list
+      :dataList="list"
+      :pageModel="pageModel"
+      :getListApi="getProductionPlanList"
+      @update:dataList="getList"
+      @update:pageModel="getPageModel"
+    >
       <template #default>
         <ul class="list">
-          <li class="px-12 pt-15 mt-10">
-            <header class="flex justify-between px-9 pb-11">
-              <p>JH20180920001</p>
-              <p>20180920 - 20181001</p>
+          <li class="p-12 mt-10" v-for="item in list" :key="item.id">
+            <header class="flex justify-between pb-11">
+              <p>{{ item.code }}</p>
+              <p
+                >{{ dateFormat(item.startDate, 'YYYYMMDD') }} -
+                {{ dateFormat(item.endDate, 'YYYYMMDD') }}</p
+              >
             </header>
-            <var-cell :title="'计划本矿原煤,二号井原煤 290000吨'" class="cell text-left">
+            <var-cell :title="item.title" class="cell text-left">
               <template #description>
-                <div class="description mt-8">生产中</div>
+                <!--0 - 待生产 1 - 生产中 2 - 已结束-->
+                <div class="description mt-8">{{
+                  item.status === 0 ? '待生产' : item.status === 1 ? '生产中' : '已结束'
+                }}</div>
               </template>
               <template #extra>
                 <div class="extra">
                   <var-progress
                     class="progress mr-20"
                     mode="circle"
-                    :value="75"
+                    :value="item.progressPercent"
                     track-color="#EEEFEF"
-                    color="linear-gradient(-47deg, #09e6bb, #00a6fc)"
+                    :color="
+                      item.statistics.currentPlanWashing <= item.statistics.currentRealWashing
+                        ? {
+                            '0%': '#09e6bb',
+                            '100%': '#00a6fc',
+                          }
+                        : {
+                            '0%': '#FF973A',
+                            '100%': '#ED3A3E',
+                          }
+                    "
                     :line-width="2"
                   />
-                  <div class="circle">50%</div>
+                  <div
+                    class="circle"
+                    :style="{
+                      background:
+                        item.statistics.currentPlanWashing <= item.statistics.currentRealWashing
+                          ? 'linear-gradient(-47deg, #09e6bb, #00a6fc)'
+                          : 'linear-gradient(-47deg, #FF973A, #ED3A3E)',
+                    }"
+                    >{{ item.progressPercent }}%</div
+                  >
                 </div>
               </template>
             </var-cell>
@@ -42,8 +73,14 @@
 
 <script lang="ts" setup>
   import { getProductionPlanListApi } from '/@/api/production/plan';
-  import { ProductionPlanListParams } from '/@/api/production/model/planModel';
+  import {
+    ProductionPlanBaseModel,
+    ProductionPlanListParams,
+  } from '/@/api/production/model/planModel';
   import { PageModel } from '/#/page-model';
+  import { getDictName } from '/@/hooks/useDict';
+  import { usePrecision } from '@vueuse/math';
+  import { dateFormat } from '/@/utils/dateHelper';
 
   const searchData = reactive<ProductionPlanListParams>({
     currentDateFlag: false,
@@ -52,35 +89,60 @@
     pageNo: 1,
     pageSize: 7,
   });
-  const pageModel = reactive<PageModel>({
+  let pageModel = reactive<PageModel>({
     pageNo: 1,
     totalPages: 0,
   });
+  const list = ref<(ProductionPlanBaseModel & { title?: string; progressPercent?: number })[]>([]);
   const router = useRouter();
 
   const back = () => {
     router.back();
   };
 
-  const getProductionPlanList = async (pageSize: number, pageNo: number) => {
-    const { items, totalCount } = await getProductionPlanListApi(searchData);
-    console.log('items :>> ', items);
-    let start = pageSize * (pageNo - 1);
-    let end = pageSize * pageNo;
-    let tempList = items.slice(start, end);
-    const result = {
-      code: 200,
-      message: 'success',
-      data: {
-        list: tempList,
-        pageNo: pageNo,
-        pageSize: pageSize,
-        totalCount: totalCount,
-        totalPages: Math.ceil(totalCount / 15),
+  const getProductionPlanList = async (pageNo: number) => {
+    searchData.pageNo = pageNo;
+    console.log('pageNo :>> ', pageNo, searchData);
+    const { items, totalPages } = await getProductionPlanListApi(searchData);
+    (items || []).forEach(
+      (item: ProductionPlanBaseModel & { title?: string; progressPercent?: number }) => {
+        item.title = `计划${item.productionName} ${
+          item.statistics?.planWashingTotal || 0
+        }${getDictName('DT_UM', item.unit)}`;
+
+        item.progressPercent =
+          item.statistics.planWashingTotal === 0 || item.statistics.currentRealWashing === 0
+            ? 0
+            : calcProgress(item.statistics.currentRealWashing, item.statistics.planWashingTotal) >
+              100
+            ? 100
+            : item.statistics.planWashingTotal === 0 || item.statistics.currentRealWashing === 0
+            ? 0
+            : calcProgress(item.statistics.currentRealWashing, item.statistics.planWashingTotal);
       },
+    );
+    const result = {
+      list: items,
+      pageNo: pageNo,
+      totalPages: totalPages,
     };
 
     return new Promise((resolve) => resolve(result));
+  };
+
+  const getList = (data: ProductionPlanBaseModel[]) => {
+    list.value = data;
+  };
+  const getPageModel = (data: PageModel) => {
+    console.log('data :>> ', data);
+    pageModel = data;
+    searchData.pageNo = data.pageNo;
+  };
+
+  const calcProgress = (currentRealWashing: number, planWashingTotal: number) => {
+    // 计算进度
+    const progress = currentRealWashing / planWashingTotal;
+    return usePrecision((progress * 10000) / 100, 0) as unknown as number;
   };
 </script>
 
@@ -96,7 +158,8 @@
         }
         .cell {
           position: relative;
-          padding: 11px 0 11px 9px;
+          padding: 0;
+          padding-top: 12px;
           :deep .var-cell__title {
             font-size: $--font-size-lg;
           }
@@ -120,7 +183,6 @@
               font-size: $--font-size-lg;
               text-align: center;
               color: #fff;
-              background: linear-gradient(-47deg, #09e6bb, #00a6fc);
             }
             &:after {
               position: absolute;

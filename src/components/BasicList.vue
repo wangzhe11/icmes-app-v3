@@ -77,6 +77,7 @@
   }
 
   const getList = () => {
+    console.log('getList :>> ');
     props.getListApi(newPageModel.pageNo).then((result: any) => {
       console.log('result :>> ', result);
       let tempList: [] = result.list;
@@ -93,6 +94,8 @@
       emits('update:pageModel', newPageModel);
     });
   };
+
+  defineExpose({ getList });
 
   // emit('getList', list.value);
 </script>

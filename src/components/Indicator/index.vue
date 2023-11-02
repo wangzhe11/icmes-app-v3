@@ -1,10 +1,17 @@
 <template>
   <div class="indicator" :class="{ mask: isShowMask, show: isShow }">
     <div class="indicator-content">
-      <slot>
+      <div id="container">
+        <div id="ring"></div>
+        <div id="ring"></div>
+        <div id="ring"></div>
+        <div id="ring"></div>
+        <div id="h3">加载中...</div>
+      </div>
+      <!-- <slot>
         <div class="spin"></div>
       </slot>
-      <div class="indicator-text" v-html="indicatorText" v-if="indicatorText"></div>
+      <div class="indicator-text" v-html="indicatorText" v-if="indicatorText"></div> -->
     </div>
   </div>
 </template>
@@ -108,23 +115,83 @@
       left: 50%;
       top: 50%;
       transform: translate(-50%, -50%);
-      background: rgba(0, 0, 0, 0.6);
-      border-radius: 5px;
-      padding: 15px;
-      .spin {
-        @include radiusCube(30px);
-        margin: 0 auto;
-        border: 4px solid transparent;
-        border-top-color: $--border-color-default;
-        border-left-color: $--border-color-default;
-        border-bottom-color: $--border-color-default;
-        animation: rotate 0.8s infinite linear;
+      #container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
       }
-      .indicator-text {
-        line-height: 1;
-        margin-top: $--font-size-sm;
-        font-size: $--font-size-md;
-        color: #fff;
+
+      #h3 {
+        color: $--font-color-light;
+      }
+
+      #ring {
+        width: 190px;
+        height: 190px;
+        border: 1px solid transparent;
+        border-radius: 50%;
+        position: absolute;
+      }
+
+      #ring:nth-child(1) {
+        border-bottom: 8px solid rgb(255, 141, 249);
+        animation: rotate1 2s linear infinite;
+      }
+
+      @keyframes rotate1 {
+        from {
+          transform: rotateX(50deg) rotateZ(110deg);
+        }
+
+        to {
+          transform: rotateX(50deg) rotateZ(470deg);
+        }
+      }
+
+      #ring:nth-child(2) {
+        border-bottom: 8px solid rgb(255, 65, 106);
+        animation: rotate2 2s linear infinite;
+      }
+
+      @keyframes rotate2 {
+        from {
+          transform: rotateX(20deg) rotateY(50deg) rotateZ(20deg);
+        }
+
+        to {
+          transform: rotateX(20deg) rotateY(50deg) rotateZ(380deg);
+        }
+      }
+
+      #ring:nth-child(3) {
+        border-bottom: 8px solid rgb(0, 255, 255);
+        animation: rotate3 2s linear infinite;
+      }
+
+      @keyframes rotate3 {
+        from {
+          transform: rotateX(40deg) rotateY(130deg) rotateZ(450deg);
+        }
+
+        to {
+          transform: rotateX(40deg) rotateY(130deg) rotateZ(90deg);
+        }
+      }
+
+      #ring:nth-child(4) {
+        border-bottom: 8px solid rgb(252, 183, 55);
+        animation: rotate4 2s linear infinite;
+      }
+
+      @keyframes rotate4 {
+        from {
+          transform: rotateX(70deg) rotateZ(270deg);
+        }
+
+        to {
+          transform: rotateX(70deg) rotateZ(630deg);
+        }
       }
     }
     &.mask {
